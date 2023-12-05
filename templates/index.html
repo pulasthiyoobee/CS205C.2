@@ -1,0 +1,68 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vulnerability Scanner</title>
+    <link rel="stylesheet" href="static/images/styles.css">
+    <script>
+        // JavaScript function to show the "Scan in progress" message
+        function showScanInProgress() {
+            document.getElementById('scanInProgressMessage').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <div class="topnav">
+        <a class="active" href="/">Home</a>
+        <a href="{{ url_for('about') }}">About</a>
+        {% if username %}
+        <a href="{{ url_for('logout') }}">Logout</a>
+        <a href="{{ url_for('account') }}">Account</a>
+        {% else %}
+    
+        {% endif %}
+    </div>
+    
+    {% if username %}
+    <div class="container">
+        <div class="form-container">
+            <h2>Vulnerability Scanner</h2>
+            <form action="/scan" method="post" onsubmit="showScanInProgress()">
+                <label for="targetWebsite">Target Website/Address:</label>
+                <input type="text" id="targetWebsite" name="targetWebsite" required>
+                <button type="submit">Scan</button>
+            </form>
+            <!-- Scan in progress message -->
+            <div id="scanInProgressMessage" style="display: none;">
+                <p>Scan in progress, Please Wait...</p>
+            </div>
+        </div>
+    </div>
+    {% else %}
+        <div class="container">
+            <div class="form-container">
+                <h1>Login</h1>
+                {% if error %}
+                    <p style="color: red;">{{ error }}</p>
+                {% endif %}
+                <form method="post" action="{{ url_for('login') }}">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                    <button type="submit">Login</button>
+                </form>
+                <p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a>.</p>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="vulnerabilities-paragraph">
+        <p>
+            The ever-expanding digital landscape brings convenience, but it also introduces a myriad of vulnerabilities. As we navigate the vast online space, threats such as phishing, malware, and data breaches lurk in the shadows. Cybersecurity is a shared responsibility, and understanding these risks empowers us to protect our digital identities. Join us on a journey to fortify your online presence, staying one step ahead of potential threats. Together, let's cultivate a safer and more secure digital environment for everyone.
+        </p>
+    </div>
+</body>
+</html>

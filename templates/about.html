@@ -1,0 +1,103 @@
+<!-- about.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+        body {
+            background: url('/static/images/bg2.jpeg');
+            background-size: cover;
+        }
+        .container {
+            background-color: white;
+            opacity: 80%;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .about-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .badge-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .topnav {
+            background-color: #333;
+            overflow: hidden;
+        }
+  
+        /* Style the links inside the navigation bar */
+        .topnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+  
+        /* Change the color of links on hover */
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+  
+  /* Add a color to the active/current link */
+        .topnav a.active {
+            background-color: #04AA6D;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="topnav">
+        <a class="active" href="/">Home</a>
+        {% if username %}
+        <a href="{{ url_for('logout') }}">Logout</a>
+        <a href="{{ url_for('account') }}">Account</a>
+        {% else %}
+    
+        {% endif %}
+    </div>
+    <div class="container">
+        <div class="about-container">
+            <h2>About Pulasthi Aththanayaka</h2>
+
+            <p>
+                Hello! My name is Pulasthi Aththanayaka, and I am a Bachelor of Software Engineering based in Auckland, New Zealand.
+            </p>
+
+            <p>
+                I have a passion for exploring the world of technology, and my journey has led me to acquire valuable skills and knowledge in the field of software engineering.
+            </p>
+
+            <p>
+                Contact Information:<br>
+                - Phone: +642102774505<br>
+                - Email: 270019016@yoobeestudent.ac.nz<br>
+                - Location: Auckland, New Zealand
+            </p>
+
+            <h3>Badges</h3>
+
+            <div class="badge-container">
+                <!-- Embedded IBM Badge 1 -->
+                <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="986f122b-81ee-434c-a02a-b918860981fd" data-share-badge-host="https://www.credly.com"></div>
+                <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+
+                <!-- Embedded IBM Badge 2 -->
+                <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="5d663361-78ec-47cf-a01d-2de79fc8c3b5" data-share-badge-host="https://www.credly.com"></div>
+                <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan Results</title>
+    <link rel="stylesheet" href="static/images/styles.css">
+    <!-- Add any additional styles or scripts here -->
+    <script>
+        function printPDF() {
+            // Use browser's print functionality to save as PDF
+            window.print();
+        }
+    </script>
+</head>
+<body>
+    <div class="topnav">
+        <a class="active" href="/">Home</a>
+        <a href="{{ url_for('about') }}">About</a>
+        {% if username %}
+            <a href="{{ url_for('logout') }}">Logout</a>
+            <a href="{{ url_for('account') }}">Account</a>
+        {% endif %}
+    </div>
+    <div class="container">
+        <div class="form-container">
+            <h2>Scan Results</h2>
+            {% if error %}
+                <p style="color: red;">{{ error }}</p>
+            {% else %}
+                <p>Scan results for target website: {{ target_website }}</p>
+                
+                <div id="vulnerabilitiesDiv">
+                    <!-- Iterate through other vulnerabilities -->
+                    {% if vulnerabilities %}
+                        <ul>
+                            {% for vulnerability in vulnerabilities %}
+                                <li>{{ vulnerability.name }} - {{ vulnerability.description }}</li>
+                                <!-- Add more details as needed -->
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No vulnerabilities found.</p>
+                    {% endif %}
+                </div>
+            {% endif %}
+            <!-- Print PDF button -->
+            <button type="button" onclick="printPDF()">Print PDF</button>
+        </div>
+    </div>
+    <div class="vulnerabilities-paragraph">
+        <p>
+            The ever-expanding digital landscape brings convenience, but it also introduces a myriad of vulnerabilities. As we navigate the vast online space, threats such as phishing, malware, and data breaches lurk in the shadows. Cybersecurity is a shared responsibility, and understanding these risks empowers us to protect our digital identities. Join us on a journey to fortify your online presence, staying one step ahead of potential threats. Together, let's cultivate a safer and more secure digital environment for everyone.
+        </p>
+    </div>
+</body>
+</html>
